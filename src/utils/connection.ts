@@ -73,7 +73,7 @@ async function getSalesforceOrgInfo(): Promise<SalesforceCLIResponse> {
  * @returns Connected jsforce Connection instance
  */
 export async function createSalesforceConnection(config?: ConnectionConfig) {
-  // Determine connection type from environment variables or config
+  // Determine connection type from config or environment variables
   const connectionType = config?.type || 
     (process.env.SALESFORCE_CONNECTION_TYPE as ConnectionType) || 
     ConnectionType.User_Password;
@@ -86,8 +86,8 @@ export async function createSalesforceConnection(config?: ConnectionConfig) {
   try {
     if (connectionType === ConnectionType.OAuth_2_0_Client_Credentials) {
       // OAuth 2.0 Client Credentials Flow
-      const clientId = process.env.SALESFORCE_CLIENT_ID;
-      const clientSecret = process.env.SALESFORCE_CLIENT_SECRET;
+      const clientId = config?.clientId || process.env.SALESFORCE_CLIENT_ID;
+      const clientSecret = config?.clientSecret || process.env.SALESFORCE_CLIENT_SECRET;
       
       if (!clientId || !clientSecret) {
         throw new Error('SALESFORCE_CLIENT_ID and SALESFORCE_CLIENT_SECRET are required for OAuth 2.0 Client Credentials Flow');
@@ -170,9 +170,9 @@ export async function createSalesforceConnection(config?: ConnectionConfig) {
       return conn;
     } else {
       // Default: Username/Password Flow with Security Token
-      const username = process.env.SALESFORCE_USERNAME;
-      const password = process.env.SALESFORCE_PASSWORD;
-      const token = process.env.SALESFORCE_TOKEN;
+      const username = config?.username || process.env.SALESFORCE_USERNAME;
+      const password = config?.password || process.env.SALESFORCE_PASSWORD;
+      const token = config?.token || process.env.SALESFORCE_TOKEN;
       
       if (!username || !password) {
         throw new Error('SALESFORCE_USERNAME and SALESFORCE_PASSWORD are required for Username/Password authentication');

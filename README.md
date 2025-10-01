@@ -141,6 +141,15 @@ Manage debug logs for Salesforce users:
 * Configure log levels (NONE, ERROR, WARN, INFO, DEBUG, FINE, FINER, FINEST)
 * Example: "Enable debug logs for user@example.com" or "Retrieve recent logs for an admin user"
 
+## Deployment Options
+
+This server supports two deployment modes:
+
+1. **Local (stdio)**: Traditional MCP server that runs locally with Claude Desktop
+2. **Remote (HTTP)**: Deploy as a remote server accessible over HTTP/HTTPS
+
+For remote deployment documentation, see [REMOTE-SERVER.md](REMOTE-SERVER.md).
+
 ## Setup
 
 ### Salesforce Authentication

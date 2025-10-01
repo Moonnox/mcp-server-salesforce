@@ -36,6 +36,31 @@ export interface ConnectionConfig {
    * @default 'https://login.salesforce.com'
    */
   loginUrl?: string;
+  
+  /**
+   * Username for User_Password authentication
+   */
+  username?: string;
+  
+  /**
+   * Password for User_Password authentication
+   */
+  password?: string;
+  
+  /**
+   * Security token for User_Password authentication
+   */
+  token?: string;
+  
+  /**
+   * Client ID for OAuth 2.0 Client Credentials Flow
+   */
+  clientId?: string;
+  
+  /**
+   * Client Secret for OAuth 2.0 Client Credentials Flow
+   */
+  clientSecret?: string;
 }
 
 /**
